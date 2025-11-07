@@ -3,8 +3,8 @@ services:
     name: spareparts-inventory
     env: python
     plan: starter
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn -w 2 -b 0.0.0.0:8080 app:app"
+    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt"
+    startCommand: "gunicorn app:app --bind 0.0.0.0:8080 --workers 1"
     envVars:
       - key: FIREBASE_PROJECT_ID
         fromSecret: FIREBASE_PROJECT_ID
@@ -12,5 +12,7 @@ services:
         fromSecret: FIREBASE_BUCKET
       - key: GOOGLE_APPLICATION_CREDENTIALS
         value: "/run/secrets/serviceAccountKey.json"
+      - key: FLASK_SECRET_KEY
+        fromSecret: FLASK_SECRET_KEY
     secrets:
       - serviceAccountKey.json

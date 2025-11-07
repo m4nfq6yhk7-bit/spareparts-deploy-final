@@ -1,5 +1,6 @@
+Flask==2.3.6
 google-cloud-firestore==2.21.0
-google-cloud-storage==3.5.0
-python-dotenv==1.0.1
-Flask==3.0.3
-gunicorn==22.0.0
+google-cloud-storage==2.21.0
+firebase-admin==6.1.0
+python-dotenv==1.1.0
+gunicorn==21.2.0
