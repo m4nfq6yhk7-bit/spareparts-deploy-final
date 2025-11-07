@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: spareparts-inventory
+    env: python
+    plan: starter
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python backup_firestore.py"
+    envVars:
+      - key: FIREBASE_PROJECT_ID
+        fromSecret: FIREBASE_PROJECT_ID
+      - key: FIREBASE_BUCKET
+        fromSecret: FIREBASE_BUCKET
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        value: "/run/secrets/serviceAccountKey.json"
+    secrets:
+      - serviceAccountKey.json
