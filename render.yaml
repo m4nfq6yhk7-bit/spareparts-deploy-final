@@ -4,7 +4,7 @@ services:
     env: python
     plan: starter
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "python backup_firestore.py"
+    startCommand: "gunicorn app:app --bind 0.0.0.0:8080"
     envVars:
       - key: FIREBASE_PROJECT_ID
         fromSecret: FIREBASE_PROJECT_ID
